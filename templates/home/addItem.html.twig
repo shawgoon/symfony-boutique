@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un produit{% endblock %}
+
+{% block body %}
+
+
+<div class="addItemForm">
+    {{form_start (formulaire)}}
+    <div>
+        {{form_label (formulaire.nom, 'Nom')}} 
+        {# { 'attr':{'class':'label'} } #}
+    </div>
+    <div>
+        {{form_widget (formulaire.nom, { 'attr': {'class': 'input'} })}}
+    </div>
+    <div>
+        {{form_label (formulaire.image, 'Image')}}
+    </div>
+    <div>     
+        {{form_widget (formulaire.image)}}
+    </div>
+    <div>
+        {{form_label (formulaire.description, 'Description du produit')}}
+    </div>
+    <div>
+        {{form_widget (formulaire.description)}}
+    </div>
+    <div>
+        {{form_label (formulaire.prix, 'Prix')}}
+    </div>
+    <div>    
+        {{form_widget (formulaire.prix)}}
+    </div>
+    <div>
+        {{form_label (formulaire.created_AT, 'Ajouter le')}}
+    </div>
+    <div>    
+        {{form_widget (formulaire.created_AT)}}
+    </div>
+    <br>
+    <button type="submit">
+        {# {% if isset modifProduit %} #}
+            {# Modifier la fiche du chat   #}
+            {# {% else %}  #}
+            Ajouter un chat
+        {# {% endif %} %} #}
+    </button>
+    {{form_end (formulaire)}}
+
+    
+</div>
+{% endblock %}

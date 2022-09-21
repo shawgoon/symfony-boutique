@@ -1,0 +1,122 @@
+/* généralités */
+
+*{
+    margin: 0;padding: 0;
+    box-sizing: border-box;
+}
+ul{
+    width: 100%;
+    height: 5em;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+    background-color: rgb(178, 224, 250);
+}
+li{
+    width: 15em;
+    height: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+a{
+    text-decoration: none;
+    color: blue;
+}
+li:hover{
+    background-color: rgb(111, 199, 250);
+}
+img{
+    width: 100%; height: 100%;
+}
+button{
+    margin: 0.3em;
+}
+
+/* home page */
+
+.background{
+    width: 100%; 
+    height: 100vh;
+    background-image: url(../img/chaton.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+/* list page */
+
+.wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+/****** card ******/
+.card{
+    width: 30%; height: 45vh;
+    border: solid 2px blue;
+    border-radius: 1em;
+    margin: 1em;
+    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card h2{
+    color: blue;
+    padding-bottom: 0.5em;
+}
+.card img{
+    width: 90%; height: 25vh;
+}
+p{
+    margin: 0.3em;
+}
+.price{
+    font-weight: 700;
+    font-size: 1.5em;
+    color: blue;
+}
+.update,
+.trash{
+    width: 2em; height: 2em;
+}
+.fa-pen-nib{
+    color: green;
+}
+.fa-trash-can{
+    color: red;
+}
+
+/* form page */
+.addItemForm{
+    width: 50%;
+    border: solid 2px blue;
+    border-radius: 1em;
+    padding: 1em;
+    margin: 1em auto;
+    display: flex;
+    justify-content: center;
+}
+/****** formulaire ******/
+
+/* fiche page */
+.soloCard{
+    width: 50%; height: 70vh;
+    border: solid 2px blue;
+    border-radius: 1em;
+    margin: 1em auto;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.soloCard h2{
+    color: blue;
+    padding-bottom: 0.5em;
+    font-size: 3em;
+}
+.soloCard img{
+    width: 100%; height: 45vh;
+}

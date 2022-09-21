@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}nos produits{% endblock %}
+
+{% block body %}
+<div class="wrapper">
+    {%for produit in produit %}
+        <div class="card">
+            <h2>{{produit.nom}}</h2>
+            <img src="{{produit.image}}" alt="">
+            <p>{{produit.description}}</p>
+            <p class="price">{{produit.prix}} €</p>
+            <button class="show"><a href="{{path('showone',{'id':produit.id})}}">Afficher la carte</a></button>
+            <div class="button">
+                <button class="update"><a href="{{path('modifProduit',{'id':produit.id})}}"><i class="fa-solid fa-pen-nib"></i></a></button>
+                <button class="trash"><a href="{{path('supprimProduit',{'id':produit.id})}}"><i class="fa-regular fa-trash-can"></i></a></button>
+            </div>
+            {# <p>Ajouter le {{produit.created_AT}}</p> #}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
