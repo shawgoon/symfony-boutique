@@ -18,12 +18,7 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        // $repository = $this->getDoctrine()->getRepository(Produit::class);
-        // $produits = $repository->findAll();
-        // // dd($employes);
-        return $this->render('home/index.html.twig', [
-            // "produits" => $produits
-        ]);
+        return $this->render('home/index.html.twig', []);
     }
     /**
      * @Route("/showItems", name="showitems")
@@ -36,24 +31,30 @@ class HomeController extends AbstractController
             'produit' => $produit
         ]);
     }
+    // /**
+    //  * @Route("/addItem", name="ajoutProduit")
+    //  */
+    // public function ajoutItem(ObjectManager $objetManager, Request $requete){
+    //     $produit = new produit();
+    //     $form = $this->createForm(ItemType::class, $produit);
+    //     $form->handleRequest($requete);
+    //     // dd($form);
+    //     if($form->isSubmitted() && $form->isValid()){
+    //         $objetManager->persist($produit);
+    //         $objetManager->flush();
+    //        return $this->redirectToRoute('app_home');
+    //     }
+    //     $formMode = false;
+    //     // if ($produit->getId() !== null){
+    //     //     $formMode = true;
+    //     // }
+    //     return $this->render('home/addItem.html.twig',[
+    //         'formulaire' => $form->createView(),
+    //         'mode' => $formMode
+    //     ]);
+    // }
     /**
-     * @Route("/addItem", name="ajoutProduit")
-     */
-    public function ajoutItem(ObjectManager $objetManager, Request $requete){
-        $produit = new produit();
-        $form = $this->createForm(ItemType::class, $produit);
-        $form->handleRequest($requete);
-        // dd($form);
-        if($form->isSubmitted() && $form->isValid()){
-            $objetManager->persist($produit);
-            $objetManager->flush();
-           return $this->redirectToRoute('app_home');
-        }
-        return $this->render('home/addItem.html.twig',[
-            'formulaire' => $form->createView()
-        ]);
-    }
-    /**
+     * @Route("/addItem", name="ajoutProduit") // permet de remplacer toute la fonction ajoutItem
      * @Route("/editItem/{id}", name="modifProduit")
      */
     public function modifItem(ObjectManager $objetManager, Request $requete, Produit $produit = null){
@@ -65,10 +66,15 @@ class HomeController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $objetManager->persist($produit);
             $objetManager->flush();
-           return $this->redirectToRoute('showitems');
+           return $this->redirectToRoute('showone', ['id' => $produit->getId()]);// pour renvoyer sur une page utilisant un id
+        }
+        $formMode = false;
+        if ($produit->getId() !== null){
+            $formMode = true;
         }
         return $this->render('home/addItem.html.twig',[
-            'formulaire' => $form->createView()
+            'formulaire' => $form->createView(),
+            'mode' => $formMode
         ]);
     }
     /**

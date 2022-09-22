@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProduitRepository::class)
@@ -19,26 +20,36 @@ class Produit
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     * min = 2,
+     * max = 15,
+     * minMessage = "le nom doit comporter au moins {{ limit }} caractères",
+     * maxMessage = "le nom ne doit pas dépasser {{ limit }} caractères" )
      */
     private $nom;
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\NotBlank
      */
     private $prix;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $image;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank
      */
     private $created_AT;
 

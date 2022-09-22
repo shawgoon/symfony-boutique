@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Produit;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,7 +15,7 @@ class ItemType extends AbstractType
         $builder
             ->add('nom')
             ->add('prix')
-            ->add('description')
+            ->add('description', TextareaType::class)
             ->add('image')
             ->add('created_AT')
         ;

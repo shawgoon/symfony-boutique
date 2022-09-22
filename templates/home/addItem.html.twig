@@ -12,7 +12,7 @@
         {# { 'attr':{'class':'label'} } #}
     </div>
     <div>
-        {{form_widget (formulaire.nom, { 'attr': {'class': 'input'} })}}
+        {{form_widget (formulaire.nom, { 'attr': {'class': 'input'}} )}}
     </div>
     <div>
         {{form_label (formulaire.image, 'Image')}}
@@ -24,7 +24,7 @@
         {{form_label (formulaire.description, 'Description du produit')}}
     </div>
     <div>
-        {{form_widget (formulaire.description)}}
+        {{form_widget (formulaire.description, {'attr': {'type':'textaera'}}) }}
     </div>
     <div>
         {{form_label (formulaire.prix, 'Prix')}}
@@ -40,11 +40,11 @@
     </div>
     <br>
     <button type="submit">
-        {# {% if isset modifProduit %} #}
-            {# Modifier la fiche du chat   #}
-            {# {% else %}  #}
+        {% if mode %}
+            Modifier la fiche du chat  
+            {% else %} 
             Ajouter un chat
-        {# {% endif %} %} #}
+        {% endif %}
     </button>
     {{form_end (formulaire)}}
 
