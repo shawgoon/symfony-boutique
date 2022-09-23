@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire employés{% endblock %}
+
+{% block body %}
+<div class="addItemForm">
+    {{form_start (formulaire)}}
+    <div>
+        {{form_row (formulaire.nom, { 'attr': {'placeholder':'votre nom'}} )}}
+    </div>
+    <div>
+        {{form_row (formulaire.prenom, { 'attr': {'placeholder':'votre prenom'}} )}}
+    </div>
+    <div>
+        {{form_row (formulaire.sexe, { 'label':'genre', 'attr':{'placeholder':'votre sexe'}} )}}
+    </div>
+    <div>
+        {{form_row (formulaire.age, { 'label':'age', 'attr':{'placeholder':'votre age'}} )}}
+    </div>
+    <div>    
+        {{form_row (formulaire.workedAt)}}
+    </div>
+    <div>    
+        {{form_row (formulaire.salaire)}}
+    </div>
+    <div>     
+        {{form_row (formulaire.image)}}
+    </div>
+    <div>
+        {{form_row (formulaire.email)}}
+    </div>
+    <div>
+        {{form_row (formulaire.password)}}
+    </div>
+    
+    <br>
+    <button type="submit">
+        {# {% if mode %}
+            Modifier la fiche du chat  
+            {% else %}  #}
+            Ajouter un employé
+        {# {% endif %} #}
+    </button>
+    {{form_end (formulaire)}}
+
+    
+</div>
+{% endblock %}

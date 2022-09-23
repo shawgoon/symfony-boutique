@@ -112,7 +112,7 @@ form{
     display: flex;
     flex-direction: column;
 }
-.required{
+label{
     color: blue;
     padding: 0.2em;
 }

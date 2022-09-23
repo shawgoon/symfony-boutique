@@ -44,6 +44,8 @@ class Produit
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
+     * @Assert\Url(
+     * message="l'url de l'image n'est pas valide")
      */
     private $image;
 
