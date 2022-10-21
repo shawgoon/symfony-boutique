@@ -26,17 +26,16 @@ class EmployeController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             // ajouter un fichier 
             // ajouter dans le fichier "services.yaml" dans parameters :
-            // "brochures_directory: '%kernel.project_dir%/public/uploads/dossier_images'"
+            // "brochures_directory: '%kernel.project_dir%/public/uploads/nom_du_dossier'"
             /** @var UploadedFile $imageFile */
             $imageFile = $form->get('image')->getData();
             if($imageFile){
-                $origineFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
-                $safeFileName = $slugger->slug($origineFilename);
-                $newFileName = $safeFileName . '-' . uniqid() . '.' . 
-                $imageFile->guessExtension();
+                $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFileName = $slugger->slug($originalFilename);
+                $newFileName = $safeFileName.'-'.uniqid().'.'.$imageFile->guessExtension();
                 try{
                     $imageFile->move(
-                        $this->getParameter('dossier_images'),
+                        $this->getParameter('brochures_directory'),
                         $newFileName
                     );
                 } catch (FileException $e){
