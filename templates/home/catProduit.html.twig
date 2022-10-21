@@ -1,15 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}nos produits{% endblock %}
+{% block title %}nos chats par catégories{% endblock %}
 
 {% block body %}
 <div class="wrapper">
     {%for produit in produit %}
         <div class="card">
-            <h2>{{produit.nom}} {{produit.stock}}</h2>
-            {% for cat in produit.categories %}
+            <h2>{{produit.nom}}</h2>
+            {# {% for cat in produit.categories %}
                 <p>{{cat.nom}}</p>
-            {% endfor %}
+            {% endfor %} #}
+            <p>{{categories.nom}}</p>
             <img src="{{produit.image}}" alt="">
             <p>{{produit.description}}</p>
             <p class="price">{{produit.prix}} €</p>

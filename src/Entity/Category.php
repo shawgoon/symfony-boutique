@@ -91,4 +91,12 @@ class Category
 
         return $this;
     }
+    // sert pour insérer dans la DB la relation entre category et produit
+    public function __toString()
+    {
+        if(is_null($this->nom)){
+            return "NULL";
+        }
+        return $this->nom;
+    }
 }

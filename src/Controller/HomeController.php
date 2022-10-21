@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Produit;
 use App\Form\ItemType;
+use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -57,20 +59,26 @@ class HomeController extends AbstractController
      * @Route("/addItem", name="ajoutProduit") // permet de remplacer toute la fonction ajoutItem
      * @Route("/editItem/{id}", name="modifProduit")
      */
-    public function modifItem(ObjectManager $objetManager, Request $requete, Produit $produit = null){
+    public function modifItem(ManagerRegistry $doctrine, Request $requete, Produit $produit = null){
         if(!$produit){
             $produit = new Produit();
         }
         $form = $this->createForm(ItemType::class, $produit);
-        $form->handleRequest($requete);
-        if($form->isSubmitted() && $form->isValid()){
-            $objetManager->persist($produit);
-            $objetManager->flush();
-           return $this->redirectToRoute('showone', ['id' => $produit->getId()]);// pour renvoyer sur une page utilisant un id
-        }
+        $form->handleRequest($requete); dd($produit);
+        if($form->isSubmitted() && $form->isValid()){  /* dd($produit); ne veut pas entrer dans ma condition ! */
+            $produit->setCreatedAt(new \DateTimeImmutable());
+            $om = $doctrine->getManager();
+            // $category = new Category();
+            // $category->addProduit($produit);
+            // $produit->addCategory($category);
+            // $om->persist($category);
+            $om->persist($produit);
+            $om->flush();
+            return $this->redirectToRoute('showone', ['id' => $produit->getId()]);// pour renvoyer sur une page utilisant un id
+        } /* dd($produit); ici ça veut bien passer, mais pas entrer non plus dans la condition suivante */
         $formMode = false;
-        if ($produit->getId() !== null){
-            $formMode = true;
+        if($produit->getId() !== null){
+            $formMode = true; 
         }
         return $this->render('home/addItem.html.twig',[
             'formulaire' => $form->createView(),
@@ -95,6 +103,18 @@ class HomeController extends AbstractController
         // dd($produit);
         return $this->render('home/showOne.html.twig',[
             'produit' => $produit
+        ]);
+    }
+     /**
+     * @Route("/catProduit/{id}",name="app_catProduit")
+     */
+    public function catProduit(ManagerRegistry $doctrine, $id ,Category $category){ 
+        $om = $doctrine->getRepository(Category::class);
+        $catProduit = $om->findProduitByCategory($id);
+        // dd($catProduit);
+        return $this->render("home/catProduit.html.twig",[
+            'catProduit' => $catProduit,
+            "category" => $category,
         ]);
     }
 }

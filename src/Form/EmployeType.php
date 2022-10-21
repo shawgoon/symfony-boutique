@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Employe;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -31,12 +33,14 @@ class EmployeType extends AbstractType
             ])
             ->add('salaire')
             ->add('image', FileType::class,[
-                'label'=>"image(jpg,png)",
-                'data_class'=>null,
-                'required'=>false
+                'label' => "image (jpg,png)",
+                'data_class' => null,
+                'required' => false
             ])
             ->add('email', EmailType::class)
-            ->add('password', PasswordType::class);
+            ->add('password', PasswordType::class)
+        ;
+            
     }
 
     public function configureOptions(OptionsResolver $resolver): void

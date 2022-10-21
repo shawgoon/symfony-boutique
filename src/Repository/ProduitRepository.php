@@ -63,4 +63,12 @@ class ProduitRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function findProduitInStock($valeur = 1){
+        return $this->createQueryBuilder("produit")
+        ->select("*")
+        ->andWhere("produit.stock = :valeur")
+        ->setParameter("valeur",$valeur)
+        ->getQuery()
+        ->getResult();
+    }
 }

@@ -63,4 +63,14 @@ class CategoryRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+// récupérer des produits par catégorie
+    public function findProduitByCategory($id){
+        return $this->createQueryBuilder("categories")
+        ->select("produit.nom","produit.prix","produit.description","produit.image"/* ,"categories" */)
+        ->leftJoin("categories.produit","produit") /* categories nom du champ à la place de category */
+        ->andWhere("categories.id = :id")
+        ->setParameter("id",$id)
+        ->getQuery()
+        ->getResult();
+    }
 }

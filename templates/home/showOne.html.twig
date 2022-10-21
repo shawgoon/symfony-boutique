@@ -5,6 +5,10 @@
 {% block body %}
     <div class="soloCard">
         <h2>{{produit.nom}}</h2>
+        {# <p>{{produit.0.nom}}</p> #}
+        {% for cat in produit.categories%}
+            <p>{{cat.nom}}</p>
+        {% endfor %}
         <img src="{{produit.image}}" alt="">
         <p>{{produit.description}}</p>
         <p class="price">{{produit.prix}} €</p>
